@@ -1,7 +1,7 @@
 //Declarando variables
 let producto;
-let totalCompra;
-let totalPagar;
+let totalCompra = 0;
+let totalPagar = 0;
 let pampers = 1230;
 let huggies = 1250;
 let estrella = 1100;
@@ -15,7 +15,7 @@ function bienvenida () {
 
 //Declarando funcion comprar
 function comprar() {
-    producto == prompt ("Que producto estabas buscando? Seleccioná Pampers, Huggies, Estrella o Babisec.").toLowerCase();
+    producto = prompt ("Que producto estabas buscando? Seleccioná Pampers, Huggies, Estrella o Babisec.").toLowerCase();
 
     switch (producto) {
         case "pampers":
@@ -43,7 +43,7 @@ function comprar() {
 }
 
 function finalizarCompra() {
-    pagar == prompt ("Ingrese su metodo de pago: 'E' para efectivo o transferencia, o 'T' para pagos con tarjeta de crédito").toLowerCase();
+    pagar = prompt ("Ingrese su metodo de pago: 'E' para efectivo o transferencia, o 'T' para pagos con tarjeta de crédito").toLowerCase();
     
     if (pagar === "e") {
         totalCompra *= 0.9
@@ -60,17 +60,17 @@ function finalizarCompra() {
 
 let nombre = prompt("Hola! Cual es tu nombre?").toUpperCase();
 bienvenida();
-let iniciarCompra = prompt("Si desea comprar un producto elija #1, si desea finalizar su compra elija #2, si desea salir del programa elija 3");
+let iniciarCompra = prompt("Si desea comprar un producto elija #1, si desea salir del programa elija #2");
 
-while (iniciarCompra !== "3") {
+while (iniciarCompra !== "2") {
     if (iniciarCompra === "1") {
         comprar ();
         let continuarCompra = prompt ("Desea continuar comprando? Si/No").toLowerCase();
         if(continuarCompra === "si") {
             comprar();
+        } else if (continuarCompra === "no") {
+            finalizarCompra();
+            iniciarCompra = "2";
         }
-    } else if (iniciarCompra === "2") {
-        finalizarCompra();
-        iniciarCompra = "3";
     }
 }
