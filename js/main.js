@@ -7,7 +7,7 @@ let huggies = 1250;
 let estrella = 1100;
 let babysec = 980;
 
-//declaro función ingreso
+//Declarando función ingreso
 function bienvenida () {
     alert(nombre + ', te damos la bienvenida a Pipu Baby & kids, pañalera y juguetería online');
 
@@ -15,7 +15,7 @@ function bienvenida () {
 
 //Declarando funcion comprar
 function comprar() {
-    producto = prompt ("Que producto estabas buscando? Seleccioná Pampers, Huggies, Estrella o Babisec.").toLowerCase();
+    producto = prompt ("Que producto estabas buscando? Seleccioná Pampers, Huggies, Estrella o Babysec.").toLowerCase();
 
     switch (producto) {
         case "pampers":
@@ -42,6 +42,7 @@ function comprar() {
 
 }
 
+//Declarando funcion finalizar compra
 function finalizarCompra() {
     pagar = prompt ("Ingrese su metodo de pago: 'E' para efectivo o transferencia, o 'T' para pagos con tarjeta de crédito").toLowerCase();
     
@@ -56,7 +57,7 @@ function finalizarCompra() {
 }
 
 
-
+// Iniciando programa - Main
 
 let nombre = prompt("Hola! Cual es tu nombre?").toUpperCase();
 bienvenida();
