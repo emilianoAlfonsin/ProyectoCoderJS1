@@ -2,6 +2,7 @@
 let producto;
 let cantidad;
 let iniciarCompra;
+let continuarCompra;
 let totalCompra = 0;
 let totalPagar = 0;
 
@@ -24,7 +25,7 @@ const pampersSplash = new Producto ("Pampers splash", 250, "toallas humedas")
 // ------ Declarando funciones ------
 
 function bienvenida () {
-    alert(nombre + ', te damos la bienvenida a Pipu Baby & kids, pañalera y juguetería online')
+    alert (`Saludos ${nombre}, te damos la bienvenida a Pipu Baby & kids, pañalera y juguetería online`)
 }
 
 function incorrecto(){
@@ -33,6 +34,10 @@ function incorrecto(){
 
 function cuantia () {
     return Number(prompt ("Qué cantidad deseas comprar?"))
+}
+
+function continuar(){
+    return prompt ("Desea continuar comprando? Si/No").toLowerCase()
 }
 
 function comprar() {
@@ -46,14 +51,20 @@ function comprar() {
                 if (producto === "confort"){
                     cantidad = cuantia()
                     totalCompra += (pampersConfort.valor*cantidad)
-                }else{
+                    alert(`Añadió a su carrito ${pampersConfort.nombre} x ${cantidad}u.`)
+                } else if (producto === "premium") {
                     cantidad = cuantia()
                     totalCompra += (pampersPremium.valor*cantidad)
+                    alert(`Añadió a su carrito: ${pampersPremium.nombre} x ${cantidad}u.`)
+                } else {
+                    incorrecto()
+                    comprar()
                 }
-            }if (producto === "huggies") {
+            } else if (producto === "huggies") {
                 cantidad = cuantia()
                 totalCompra += (huggiesAct.valor*cantidad)
-            }else{
+                alert(`Añadió a su carrito: ${huggiesAct.nombre} x ${cantidad}u.`)
+            } else {
                 incorrecto()
                 comprar()
             }
@@ -63,10 +74,12 @@ function comprar() {
             if (producto === "pampers"){
                 cantidad = cuantia()
                 totalCompra += (pampersSplash.valor*cantidad)
-            }if (producto === "qsoft"){
+                alert(`Añadió a su carrito: ${pampersSplash.nombre} x ${cantidad}u.`)
+            } else if (producto === "qsoft"){
                 cantidad = cuantia()
                 totalCompra += (qsoftPremium.valor*cantidad)
-            }else{
+                alert(`Añadió a su carrito: ${qsoftPremium.nombre} x ${cantidad}u.`)
+            } else {
                 incorrecto()
                 comprar()
             }
@@ -83,7 +96,7 @@ function ingresar(){
 }
 
 function finalizarCompra() {
-    pagar = prompt ("Ingrese su metodo de pago: 'E' para efectivo o transferencia, o 'T' para pagos con tarjeta de crédito").toLowerCase();
+    pagar = prompt ("Ingrese su metodo de pago: 'T' para pagos con tarjeta de crédito , o 'E' para efectivo o transferencia con un descuento del 10%").toLowerCase();
     
     if (pagar === "e") {
         totalCompra *= 0.9
@@ -92,7 +105,7 @@ function finalizarCompra() {
     } else if (pagar === "t") {
         totalPagar = totalCompra;
         alert (`El monto a pagar es $${totalPagar}. Gracias por su compra!`);
-    }else{
+    } else {
         incorrecto()
         finalizarCompra()
     }
@@ -108,15 +121,17 @@ ingresar();
 while (iniciarCompra !== 2) {
     if (iniciarCompra === 1) {
         comprar ();
-        let continuarCompra = prompt ("Desea continuar comprando? Si/No").toLowerCase();
-        if(continuarCompra === "si") {
+        continuarCompra = continuar()
+        if (continuarCompra === "si") {
             comprar();
+            continuarCompra = continuar()
         } else if (continuarCompra === "no") {
-            finalizarCompra();
-            iniciarCompra = "2";
+            iniciarCompra = 2;
         }
-    }else{
+    } else {
         incorrecto();
         ingresar();
     }
 }
+
+finalizarCompra();
