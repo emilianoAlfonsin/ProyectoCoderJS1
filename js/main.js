@@ -72,6 +72,7 @@ function comprar() {
             }
             break;
         default:
+            incorrecto()
             comprar()
             break;
     }
@@ -91,6 +92,9 @@ function finalizarCompra() {
     } else if (pagar === "t") {
         totalPagar = totalCompra;
         alert (`El monto a pagar es $${totalPagar}. Gracias por su compra!`);
+    }else{
+        incorrecto()
+        finalizarCompra()
     }
 }
 
